@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>square</title>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<!-- 	<script type="text/javascript" src="task1.json"></script>
+ -->
+	<style type="text/css">
+			#id{
+				position:absolute;
+   				left: 0px;
+   				top: 0px;
+				width:0px;
+				height:0px;
+				background-color:black;
+			}
+			
+			
+			
+		</style>
+
+</head>
+	<body>
+	<div id="id" ></div>
+
+	<script>
+
+		$(document).ready(function() {	
+				jsonParser(0);
+
+		});
+
+
+		var ele=document.getElementById("id");
+		var jInit;
+		var tit;
+		var interval;
+
+$("body").delegate("div", "mouseenter mouseleave",function(event){
+
+						if(event.type==='mouseenter')
+						{
+		
+						document.getElementById("id").innerHTML=tit;
+				
+							  clearInterval(interval);
+							  ele.style.backgroundColor = "red";;
+							
+						}
+						else if(event.type==='mouseleave')
+						{
+							document.getElementById("id").innerHTML="";
+							jsonParser(jInit);
+							ele.style.backgroundColor = "black";
+						}
+    		});	
+
+
+		
+
+
+	function jsonParser(init){
+			$.getJSON('/task1.json', function(data) { 
+				var i=init;
+				  interval = setInterval(function() { 
+	                var title=data[i].title;
+			    	var x=data[i].bounds[0][0];
+			    	var y=data[i].bounds[0][1];
+			    	var w=data[i].bounds[2][0]-x;
+			    	var h=data[i].bounds[2][1]-y;
+			    		
+				 		drawBox(i,x,y,w,h,title); 
+	                          i++; 
+	                          if(i >= data.length) clearInterval(interval);
+	                   }, 100);        
+			 
+
+				return;
+
+
+			     });
+	}
+
+	function drawBox(i,x,y,w,h,title) {
+		var it;
+		jInit= i;
+		tit=title;
+	 	ele.style.top = x+ "px";
+	    ele.style.left = y+ "px";
+	    ele.style.height = h+ "px";
+	    ele.style.width = w+ "px";	 
+	 
+	}
+
+
+
+
+
+	
+
+	</script>
+
+
+	</body>
+</html>
