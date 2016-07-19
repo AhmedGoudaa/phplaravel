@@ -32,25 +32,6 @@ class PostsController extends Controller
 
 
 
-
-//        if ($keyword){
-//            $users=DB::table('user')
-//                ->where('first_name','like', '%'.$keyword.'%')
-//                ->orWhere('last_name','like', '%'.$keyword.'%')
-//                ->orWhere('email','like', '%'.$keyword.'%')
-//                ->Paginate(10);;
-//
-//            foreach ($users as $user){
-//                $user_reports=Report::where('reported_type_id',3)->where('reported_id',$user->user_id)->get();
-//                $user->user_reports=count($user_reports);
-//            }
-//            return view('backend.admin.searchusers', compact('users','keyword'));
-//        }
-//
-//        return redirect('/backend/users/listall');
-////		return  Response::json($users);
-
-
     }
     
     /**
